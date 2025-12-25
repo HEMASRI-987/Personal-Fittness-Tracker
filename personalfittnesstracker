@@ -1,0 +1,47 @@
+# Simple Fitness Tracker
+
+fitness_log = {}
+
+def add_exercise():
+    date = input("Enter date (YYYY-MM-DD): ")
+    exercise = input("Enter exercise name: ")
+    duration = input("Enter duration in minutes: ")
+    calories = input("Enter calories burned: ")
+
+    if date not in fitness_log:
+        fitness_log[date] = []
+
+    fitness_log[date].append({
+        "exercise": exercise,
+        "duration": duration,
+        "calories": calories
+    })
+    print(f"{exercise} added for {date}!")
+
+def view_log():
+    for date, exercises in fitness_log.items():
+        print(f"\nDate: {date}")
+        for ex in exercises:
+            print(f"  {ex['exercise']} - {ex['duration']} min, {ex['calories']} calories")
+
+def main():
+    while True:
+        print("\n--- Simple Fitness Tracker ---")
+        print("1. Add Exercise")
+        print("2. View Log")
+        print("3. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            add_exercise()
+        elif choice == "2":
+            view_log()
+        elif choice == "3":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice!")
+
+if __name__ == "__main__":
+    main()
